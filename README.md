@@ -1,5 +1,4 @@
 # NeoN-DodGe-
-
 **Dodge. Survive. Beat the High Score.**
 
 NeoN-DodGe- is a browser-based arcade game built around quick reflexes, precision, and survival. Players must navigate through incoming obstacles, avoid collisions, and challenge themselves to achieve the highest possible score.
@@ -96,3 +95,23 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 **NeoN-DodGe- — Dodge & Beat the High Score.**
+
+## Supabase setup
+
+The global leaderboard uses Supabase. Create a `.env.local` file in the project
+root with the following Vite variables:
+
+```env
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=your-supabase-publishable-key
+```
+
+In the Supabase SQL Editor, run
+[`supabase/migrations/20261113210320_create_leaderboard_table.sql`](./supabase/migrations/20261113210320_create_leaderboard_table.sql)
+to create the leaderboard table and its public read/score-submission policies.
+The browser app uses only the publishable key; never put a database password,
+service-role key, or secret API key in frontend code or environment variables
+prefixed with `VITE_`.
+
+For hosted builds, configure `VITE_SUPABASE_URL` and
+`VITE_SUPABASE_PUBLISHABLE_KEY` in the hosting provider's environment settings.
